@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>临时记录</title>
+    <link rel="shortcut icon" href="素材/images/哈利波特/斯莱特林.png" type="image/x-icon">
+    <script src="jQuery/jQuery.min.js"></script>
+    <script src="../music.js"></script>
+    <link rel="stylesheet" href="../music.css">
+    <style>
+        @font-face {
+            font-family: "en";
+            src: url("素材/字体/eng.woff2");
+        }
+        /* @font-face {
+            font-family: "longCang";
+            src: url("素材/字体/LongCang.ttf");
+        } */
+        
+        @media screen and (max-width: 652px) {
+            html {
+                font-size: 8px;
+            }
+            .h p {
+                /* display: block; */
+                float: left;
+                color: #fff;
+                /* font-size: 40px; */
+                /* font-size: 4rem; */
+                font-size: 2.5rem;
+                font-weight: 500px;
+                margin: 15px 0;
+                /* vertical-align: middle; */
+            }
+            .body li {
+                margin-top: 10px;
+                font-size: 2rem;
+                font-weight: 500;
+                overflow: hidden;
+                border-bottom: 1px #000 solid;
+            }
+        }
+        
+        @media screen and (min-width: 652px) {
+            html {
+                font-size: 10px;
+            }
+            .h p {
+                /* display: block; */
+                float: left;
+                color: #fff;
+                /* font-size: 40px; */
+                font-size: 4rem;
+                font-weight: 500px;
+                margin: 15px 0;
+                /* vertical-align: middle; */
+            }
+            .body li {
+                margin-top: 10px;
+                font-size: 2.5rem;
+                font-weight: 500;
+                overflow: hidden;
+                border-bottom: 1px #000 solid;
+            }
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: 'en';
+        }
+        /* html {
+            font-size: 10px;
+        } */
+        
+        input {
+            /* width: 50%; */
+            padding-left: 20px;
+            outline: none;
+            border: none;
+        }
+        
+        .auto {
+            margin: 0px auto;
+            width: 80%;
+            /* border: 1px #fff solid; */
+        }
+        
+        .h {
+            overflow: hidden;
+            line-height: 50px;
+            height: 80px;
+            background-color: rgb(59, 57, 58);
+        }
+        
+        .box {
+            width: 100%;
+            height: 80px;
+            background-color: rgb(59, 57, 58);
+        }
+        
+        .but {
+            float: right;
+            width: 50px;
+            height: 50px;
+            margin: 18px 0;
+            background-color: #00AAAA;
+            font-size: 20px;
+            font-weight: 500;
+            color: #fff;
+            line-height: 50px;
+            text-align: center;
+            cursor: pointer;
+        }
+        
+        .header {
+            float: right;
+            /* text-align: center; */
+            /* background-color: pink; */
+            width: 48%;
+            height: 50px;
+            margin: 18px 0px;
+            font-size: 20px;
+        }
+        
+        li {
+            list-style: none;
+        }
+        
+        .body {
+            /* text-align: center; */
+            padding-left: 10px;
+            /* background-color: rgb(236, 117, 137); */
+            height: 30px;
+            width: 75%;
+        }
+        
+        .body ol {
+            overflow: hidden;
+        }
+        
+        .body li {
+            margin-top: 10px;
+            font-size: 2.5rem;
+            font-weight: 500;
+            overflow: hidden;
+            border-bottom: 1px #000 solid;
+            display: none;
+        }
+        
+        .body p {
+            float: left;
+        }
+        
+        .body button {
+            border: 5px solid #ccc;
+            /* height: 5px; */
+            /* color: #FF5454; */
+            background-color: #ccc;
+            float: right;
+            margin-top: 3px;
+            cursor: pointer;
+            border-radius: 15px 15px 15px 15px;
+        }
+        
+        .body button:hover {
+            background-color: #EB3941;
+            border: 5px solid #EB3941;
+            color: #fff;
+        }
+        
+        .out {
+            border-radius: 15px 15px 15px 15px;
+            display: none;
+            font-size: 30px;
+            line-height: 50px;
+            text-align: center;
+            width: 100%;
+            color: #fff;
+            background-color: #EB3941;
+            height: 50px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="auto h">
+            <p>临时记录</p>
+            <div class="but">记录</div>
+            <input class="header" type="text" placeholder="请输入记录信息">
+
+        </div>
+
+    </div>
+    <div class="auto body">
+        <ol>
+            <!-- <li>
+                <p>asdwas</p>
+                <button>删除记录</button>
+
+            </li> -->
+            <div class="out">全部删除</div>
+        </ol>
+    </div>
+    <!-- <div class="out">全部删除</div> -->
+    <script>
+        var inp = document.querySelector(".header");
+        var cear = document.querySelector(".but");
+        var ol = document.querySelector(".body ol");
+        // var li =document.querySelector(".body li");
+        var lsjl_num = sessionStorage.getItem('lsjl_num');
+        var out = document.querySelector(".out");
+        out.addEventListener('click', function() {
+            sessionStorage.clear();
+            out.style.display = 'none';
+            lsjl_num = 0;
+            location.reload();
+        });
+        console.log("aaa" + lsjl_num);
+        for (let index = 1; index <= lsjl_num; index++) {
+
+            var value = sessionStorage.getItem('lsjl_' + index);
+            console.log('lsjl_' + index + value);
+            if (value) {
+                if (lsjl_num >= 1) {
+                    // out.style.display = 'block';
+                    $(".out").slideDown();
+
+
+                }
+                let li = document.createElement('li');
+                li.innerHTML = "<p>" + value + "</p><button>删除记录</button>";
+                li.setAttribute('index', index);
+                ol.appendChild(li);
+                $("li").slideDown();
+                // inp.value = '';
+
+
+                li.querySelector('button').addEventListener("click", function() {
+                    ol.removeChild(li);
+                    sessionStorage.removeItem('lsjl_' + li.getAttribute("index"));
+
+                });
+
+            }
+
+
+
+        }
+
+
+
+
+        cear.addEventListener("click", function() {
+
+            var value = inp.value;
+            // var index = +new Date();
+            // console.log(index);
+            console.log(value);
+
+            console.log("创建中");
+
+
+            if (value) {
+
+                // out.style.display = 'block';
+                $(".out").slideDown();
+
+
+
+                lsjl_num++;
+                console.log("创建成功");
+                sessionStorage.setItem('lsjl_num', lsjl_num);
+
+                sessionStorage.setItem('lsjl_' + lsjl_num, value);
+                var li = document.createElement('li');
+                li.innerHTML = "<p>" + value + "</p><button>删除记录</button>";
+                li.setAttribute('index', lsjl_num);
+                ol.appendChild(li);
+                $("li").slideDown();
+                inp.value = '';
+                li.querySelector('button').addEventListener("click", function() {
+                    ol.removeChild(li);
+                    console.log(li.getAttribute("index"));
+                    sessionStorage.removeItem('lsjl_' + li.getAttribute("index"));
+                });
+            }
+
+        });
+        inp.addEventListener('keydown', function(e) {
+            console.log(e.keyCode);
+            if (e.keyCode == 13) {
+                cear.click()
+            }
+        });
+    </script>
+</body>
+
+</html>
