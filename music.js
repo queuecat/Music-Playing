@@ -143,6 +143,8 @@ window.onload = function() {
             musicTime.innerHTML = "<em>00:00</em> / " + sToM(video.duration) + "</span>";
             curr.style.height = 100 + '%';
             volLodging.style.top = -7 + 'px';
+            loading.style.visibility = 'hidden';
+
         })
         // 音乐缓冲暂停事件
     video.addEventListener('waiting', function() {
